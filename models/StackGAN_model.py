@@ -268,7 +268,7 @@ class StackGANModel(BaseModel):
         obs_ = torch.cuda.LongTensor(self.obs) if self.opt.gpu_ids else LongTensor(self.obs)
 
         if self.opt.base_font:
-            real_base_gt = index_select(self.real_base, 0, obs_)
+            real_base_gt = index_select(self.real_base, 0, Variable(obs_, requires_grad=False))
             self.real_base_gt = (Variable(real_base_gt.data, requires_grad=False))
 
 
